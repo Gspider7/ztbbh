@@ -1,0 +1,54 @@
+server:
+    port: 7070
+    servlet:
+        context-path: /ztb
+    ssl:
+        key-store: classpath:keystore.p12
+        key-store-password: 123456
+        keyStoreType: PKCS12
+        keyAlias: myalias
+
+http:
+    port: 707
+
+spring:
+    application:
+        name: ztb
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 500MB
+            max-request-size: 500MB
+
+    datasource:
+        druid:
+            driverClassName: org.h2.Driver
+            url:  jdbc:h2:${user.dir}/h2/ztb
+            username: root
+            password: ayufan
+            initialSize: 5
+            minIdle: 5
+            maxActive: 20
+            maxWait: 60000
+            timeBetweenEvictionRunsMillis: 60000
+            min-evictableIdleTimeMillis: 30000
+            validationQuery: SELECT 1
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: true
+
+        # init sql
+        schema: classpath:sql/schema.sql
+        data: classpath:sql/data.sql
+        initialization-mode: ALWAYS
+    h2:
+        console:
+            enabled: true
+            path: /h2
+            settings:
+                web-allow-others: true                        # ����Զ�̷���
+
+    # config for access to static resources
+    mvc:
+        static-path-pattern: /static/**

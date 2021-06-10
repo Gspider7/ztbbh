@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acrobat.ztb.mapper.TransactHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.acrobat.ztb.model.TransactHistory">
+    <result column="PROJECT_NAME" jdbcType="VARCHAR" property="projectName" />
+    <result column="PROJECT_CODE" jdbcType="VARCHAR" property="projectCode" />
+    <result column="KB_TIME" jdbcType="VARCHAR" property="kbTime" />
+    <result column="TRANSACT_TIME" jdbcType="VARCHAR" property="transactTime" />
+    <result column="TB_UNIT_NAME" jdbcType="VARCHAR" property="tbUnitName" />
+    <result column="ZB_UNIT_NAME" jdbcType="VARCHAR" property="zbUnitName" />
+    <result column="BAOHAN_MONEY" jdbcType="VARCHAR" property="baohanMoney" />
+    <result column="INVOICE_MONEY" jdbcType="VARCHAR" property="invoiceMoney" />
+    <result column="APPLICATION_NO" jdbcType="VARCHAR" property="applicationNo" />
+    <result column="BAOHAN_CODE" jdbcType="VARCHAR" property="baohanCode" />
+    <result column="REGION_CODE" jdbcType="VARCHAR" property="regionCode" />
+    <result column="REGION_NAME" jdbcType="VARCHAR" property="regionName" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+  </resultMap>
+
+</mapper>
