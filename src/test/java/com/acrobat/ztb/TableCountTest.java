@@ -95,14 +95,18 @@ public class TableCountTest {
         int colIndex = lastColIndex + 1;
         PoiUtil.getCell(PoiUtil.getRow(sheet, 0), colIndex).setCellValue(today);
 
+        int lastFind = 0;
         for (int i=0; i<tableNameList.size(); i++) {
             String tableName = tableNameList.get(i);
 
-            // 如果找不到表，则创建一行
+            // 如果找不到表，则创建一行（）
             int rowIndex = PoiUtil.findInCol(sheet, 0, tableName);
             if (rowIndex == -1) {
-                sheet.createRow(i + 1);
-                rowIndex = i + 1;
+                rowIndex = lastFind + 1;
+                sheet.shiftRows(rowIndex, sheet.getLastRowNum(), 1);        // 下面的行往下移一行
+                sheet.createRow(rowIndex);
+            } else {
+                lastFind = rowIndex;
             }
             // 获取对应数据库表所在的行
             Row row = PoiUtil.getRow(sheet, rowIndex);
