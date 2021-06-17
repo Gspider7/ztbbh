@@ -93,7 +93,7 @@ public class ImagesUtil {
 
     public static void main(String[] args) throws IOException {
 
-        compressImage("D:\\工作\\备忘\\域名\\域名证书.jpg",
-                "D:\\工作\\备忘\\域名\\域名证书2.jpg", 0.8);
+        compressImage("C:\\Users\\xt\\Desktop\\a\\申请表.jpg",
+                "C:\\Users\\xt\\Desktop\\a\\申请表2.jpg", 0.6);
     }
 }
