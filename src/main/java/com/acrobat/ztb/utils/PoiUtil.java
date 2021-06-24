@@ -11,9 +11,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * poi导入导出通用工具
@@ -23,15 +21,15 @@ import java.util.Set;
 @Slf4j
 public class PoiUtil {
 
-    public static Set<String> readRow(Row row) {
+    public static List<String> readRow(Row row) {
         if (row == null) return null;
 
-        Set<String> resultSet = new HashSet<>();
+        List<String> resultList = new ArrayList<>();
         for (int i=0; i<row.getLastCellNum(); i++) {
             Cell cell = row.getCell(i);
-            resultSet.add(cellValue(cell));
+            resultList.add(cellValue(cell));
         }
-        return resultSet;
+        return resultList;
     }
 
     /**

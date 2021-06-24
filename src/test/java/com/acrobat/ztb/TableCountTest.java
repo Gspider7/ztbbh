@@ -86,7 +86,7 @@ public class TableCountTest {
         }
 
         // 读取已经统计过的日期
-        Set<String> firstRowContents = PoiUtil.readRow(firstRow);
+        List<String> firstRowContents = PoiUtil.readRow(firstRow);
         if (firstRowContents.contains(today)) {
             log.info("当天的数据已经统计过了，不需要再统计！");
             return;

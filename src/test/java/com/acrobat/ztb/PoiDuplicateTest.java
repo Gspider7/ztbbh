@@ -1,9 +1,13 @@
 package com.acrobat.ztb;
 
+import com.acrobat.ztb.utils.JacksonUtil;
 import com.acrobat.ztb.utils.PoiUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +55,8 @@ public class PoiDuplicateTest {
                 List<Object> target = targetList.get(i);
                 if (equals(list, target)) {
                     log.info("第{}行和第{}行重复", i+1, rowIndex+1);
+                    log.info("第{}行内容：{}", i+1, JacksonUtil.writeValueAsString(PoiUtil.readRow(sheet.getRow(i))));
+                    log.info("第{}行内容：{}", rowIndex+1, JacksonUtil.writeValueAsString(PoiUtil.readRow(sheet.getRow(rowIndex))));
                 }
             }
         }
