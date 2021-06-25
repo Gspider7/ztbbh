@@ -26,6 +26,9 @@ public class TableCountTest {
 
     private static String SQL_COUNT = "select count(*) from ";
 
+    private static String SQL_COMMENT = "select table_comment from information_schema.TABLES\n" +
+            "WHERE table_name = ?";
+
     @Test
     public void count() throws SQLException, IOException, InvalidFormatException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -83,6 +86,7 @@ public class TableCountTest {
         Row firstRow = PoiUtil.getRow(sheet, 0);
         if (lastColIndex == 0) {
             PoiUtil.getCell(firstRow, 0).setCellValue("表名");
+            PoiUtil.getCell(firstRow, 1).setCellValue("表注释");
         }
 
         // 读取已经统计过的日期
@@ -105,12 +109,21 @@ public class TableCountTest {
                 rowIndex = lastFind + 1;
                 sheet.shiftRows(rowIndex, sheet.getLastRowNum(), 1);        // 下面的行往下移一行
                 sheet.createRow(rowIndex);
+
+                Row row = PoiUtil.getRow(sheet, rowIndex);
+                PoiUtil.getCell(row, 0).setCellValue(tableName);
+
+                ps = conn.prepareStatement(SQL_COMMENT);
+                ps.setString(1, tableName);
+                rs = ps.executeQuery();
+                rs.next();
+                String comment = rs.getString(1);
+                PoiUtil.getCell(row, 1).setCellValue(comment);
             } else {
                 lastFind = rowIndex;
             }
             // 获取对应数据库表所在的行
             Row row = PoiUtil.getRow(sheet, rowIndex);
-            PoiUtil.getCell(row, 0).setCellValue(tableName);
 
             ps = conn.prepareStatement(SQL_COUNT + tableName);
             rs = ps.executeQuery();
