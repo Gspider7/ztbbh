@@ -107,7 +107,9 @@ public class TableCountTest {
             int rowIndex = PoiUtil.findInCol(sheet, 0, tableName);
             if (rowIndex == -1) {
                 rowIndex = lastFind + 1;
-                sheet.shiftRows(rowIndex, sheet.getLastRowNum(), 1);        // 下面的行往下移一行
+                if (rowIndex <= sheet.getLastRowNum()) {
+                    sheet.shiftRows(rowIndex, sheet.getLastRowNum(), 1);        // 下面的行往下移一行
+                }
                 sheet.createRow(rowIndex);
 
                 Row row = PoiUtil.getRow(sheet, rowIndex);
